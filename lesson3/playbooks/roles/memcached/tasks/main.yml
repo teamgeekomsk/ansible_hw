@@ -1,0 +1,5 @@
+---
+# tasks file for memcached
+- name: install memcached server
+  yum:
+    pkg: memcached

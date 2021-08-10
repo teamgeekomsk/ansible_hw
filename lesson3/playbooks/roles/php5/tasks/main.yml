@@ -1,0 +1,21 @@
+---
+# tasks file for php5
+
+- name: install php
+
+  yum:
+    name:
+      - php
+      - php-cgi
+      - php-fpm
+      - php-memcache
+      - php-memcached
+      - php-mcrypt
+      - php-mysql
+      - php-gd
+      - php-curl
+      - php-xmlrpc
+
+  notify:
+    - restart php5-fpm
+    - restart nginx

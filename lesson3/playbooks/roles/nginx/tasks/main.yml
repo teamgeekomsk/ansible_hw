@@ -1,0 +1,20 @@
+---
+# task file for nginx
+- name: Check nginx
+  command: systemctl status nginx
+  ignore_errors: yes
+  changed_when: false
+  register: service_nginx_status
+
+- name: GET /
+  uri:
+    url: "http://{{ ip_address }}"
+    method: GET
+    return_content: yes
+
+- name: GET /favicon
+  uri:
+    url: "http://{{ ip_address }}"
+    method: GET
+    return_content: yes
+

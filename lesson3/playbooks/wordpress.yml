@@ -1,0 +1,22 @@
+---
+- name: install wordpress, php-fpm with exists nginx
+  hosts: localhost
+  vars:
+    - mysql_root_password: "123456"
+    - domain: "example.com"
+    - download_url: "http://wordpress.org/latest.tar.gz"
+    - wpdirectory: "/var/www"
+    - db_user: "wordpress"
+    - db_name: "wordpress"
+    - db_password: "wordpress"
+    - privileges: "*.*:ALL"
+    - host: "%"
+    - bind:
+        - 0.0.0.0
+
+  roles:
+  - { role: nginx }
+  - { role: mysql }
+  - { role: memcached }
+  - { role: php5 }
+  - { role: wordpress }

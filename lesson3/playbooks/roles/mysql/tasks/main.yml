@@ -1,0 +1,29 @@
+---
+# tasks file for mysql
+- name: Install MySQL
+  yum: 
+    name:
+      - mysql
+      - MySQL-python
+      - python-pip
+      - python-devel
+      - mysql-devel 
+    state: present
+
+- name: run MySQL
+  service: name=mysqld state=started enabled=yes
+  tags:
+  - mysql
+  - mysql-service
+
+- name: bind mysql remote address
+  ini_file: dest=/etc/my.cnf
+            section=mysqld
+            option=bind-address
+            value={{item}}
+  with_items: mysql.bind
+  tags:
+  - mysql
+  - mysql-configure
+  notify:
+  - restart mysql
