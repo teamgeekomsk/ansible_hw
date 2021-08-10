@@ -1,0 +1,5 @@
+---
+- name: Lesson 03, Task 01
+  hosts: localhost
+  roles: 
+    - role: nginx_check
